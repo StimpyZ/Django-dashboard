@@ -1,0 +1,61 @@
+{% extends "partials/base.html" %}
+
+{% block tittle %} Nacidos en Cartagena {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% include "partials/topnav.html" %}
+
+    <!--Table-->
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-md-4">
+                <div class="border bg-white p-3">
+                    <h4>Añadir Datos</h4>
+                    <hr>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input class="btn btn-success btn-block" type="submit" value="Añadir">
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <table class="table bg-white">
+                    <thead class="bg-dark">
+                        <tr class="text-white">
+                            <th scope="col">#</th>
+                            <th scope="col">Año</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Editar o Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for elemento in elemento %}
+                        <tr>
+                            <th scope="row"> {{ elemento.id }} </th>
+                            <td>{{ elemento.Year }}</td>
+                            <td>{{ elemento.Cantidad }}</td>
+                            <td>{{ elemento.Categoria }}</td>
+                            <td>
+                                <a class="btn btn-info btn-sm mr-2"
+                                href="">Edit</a>
+                                <a class="btn btn-danger btn-sm ml-2"
+                                href="{% url 'dashboard-nacidos-delete' elemento.id %}">Delete</a>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+
+<!--End Table-->
+{% endblock %}

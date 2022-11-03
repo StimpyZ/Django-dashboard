@@ -1,0 +1,304 @@
+{% extends 'partials/base.html' %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+{% include 'partials/topnav.html' %}
+<div class="container">
+<h2> Nacimientos en Cartagena </h2>
+<hr>
+
+<div class="row ">
+    <div class="col-md-6 my-4">
+        <div class="bg-white">
+            <div class="card-body">
+                <canvas id="myChart1" width="400" height="300"></canvas>
+                <script>
+                    var ctx = document.getElementById('myChart1').getContext('2d');
+                    var myChart1 = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: [{% for elemento in elemento %} '{{elemento.Year}}', {% endfor %}],
+                    datasets: [{
+                        label: 'Number of Products',
+                        data: [{% for elemento in elemento %} {{ elemento.Cantidad }}, {% endfor %}],
+                        backgroundColor: [
+                            'rgba(25, 99, 132, 1)',
+                            'rgba(54, 202, 235, 1)',
+                            'rgba(155, 206, 86, 1)',
+                            'rgba(45, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(25, 159, 64, 1)'
+                        ],
+                            borderColor: [
+                            'rgba(25, 99, 132, 1)',
+                            'rgba(54, 202, 235, 1)',
+                            'rgba(155, 206, 86, 1)',
+                            'rgba(45, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(25, 159, 64, 1)'
+                            ],
+                                borderWidth: 1
+                    }]
+                        },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 my-4">
+        <div class="bg-white">
+            <div class="card-body">
+                <canvas id="myChart" width="400" height="300"></canvas>
+                <script>
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: [{% for elemento in elemento %} '{{elemento.Year}}',{% endfor %}],
+                    datasets: [{
+                        label: 'Products',
+                        data: [{% for elemento in elemento %} {{ elemento.Cantidad }}, {% endfor %}],
+                        backgroundColor: [
+                        'rgba(25, 99, 132, 1)',
+                        'rgba(54, 202, 235, 1)',
+                        'rgba(155, 206, 86, 1)',
+                        'rgba(45, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(25, 159, 64, 1)'
+                        ],
+                            borderColor: [
+                            'rgba(25, 99, 132, 1)',
+                            'rgba(54, 202, 235, 1)',
+                            'rgba(155, 206, 86, 1)',
+                            'rgba(45, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(25, 159, 64, 1)'
+                            ],
+                                borderWidth: 1
+                    }]
+                        },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2> Pobreza en cartagena en Cartagena </h2>
+<hr>
+<div class="row ">
+    <div class="col-md-6 my-4">
+        <div class="bg-white">
+            <div class="card-body">
+                <canvas id="myChart3" width="400" height="300"></canvas>
+                <script>
+                    var ctx4 = document.getElementById('myChart3').getContext('2d');
+                    var myChart3 = new Chart(ctx4, {
+                        type: 'pie',
+                        data: {
+                            labels: [{% for elemento1 in elemento1 %} '{{elemento1.Year}}', {% endfor %}],
+                    datasets: [{
+                        label: 'Number of Products',
+                        data: [{% for elemento1 in elemento1 %} {{ elemento1.Cantidad }}, {% endfor %}],
+                        backgroundColor: [
+                        'rgba(25, 99, 132, 1)',
+                        'rgba(54, 202, 235, 1)',
+                        'rgba(155, 206, 86, 1)',
+                        'rgba(45, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(25, 159, 64, 1)'
+                        ],
+                            borderColor: [
+                            'rgba(25, 99, 132, 1)',
+                            'rgba(54, 202, 235, 1)',
+                            'rgba(155, 206, 86, 1)',
+                            'rgba(45, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(25, 159, 64, 1)'
+                            ],
+                                borderWidth: 1
+                    }]
+                        },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 my-4">
+        <div class="bg-white">
+            <div class="card-body">
+                <canvas id="myChart5" width="400" height="300"></canvas>
+                <script>
+                    var ctx5 = document.getElementById('myChart5').getContext('2d');
+                    var myChart5 = new Chart(ctx5, {
+                        type: 'bar',
+                        data: {
+                            labels: [{% for elemento1 in elemento1 %} '{{elemento1.Year}}',{% endfor %}],
+                    datasets: [{
+                        label: 'Products',
+                        data: [{% for elemento1 in elemento1 %} {{ elemento1.Cantidad }}, {% endfor %}],
+                        backgroundColor: [
+                        'rgba(25, 99, 132, 1)',
+                        'rgba(54, 202, 235, 1)',
+                        'rgba(155, 206, 86, 1)',
+                        'rgba(45, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(25, 159, 64, 1)'
+                        ],
+                            borderColor: [
+                            'rgba(25, 99, 132, 1)',
+                            'rgba(54, 202, 235, 1)',
+                            'rgba(155, 206, 86, 1)',
+                            'rgba(45, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(25, 159, 64, 1)'
+                            ],
+                                borderWidth: 1
+                    }]
+                        },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2> Matricula escolar en Cartagena </h2>
+<hr>
+<div class="row ">
+    <div class="col-md-6 my-4">
+        <div class="bg-white">
+            <div class="card-body">
+                <canvas id="myChart11" width="400" height="300"></canvas>
+                <script>
+                    var ctx11 = document.getElementById('myChart11').getContext('2d');
+                    var myChart11 = new Chart(ctx11, {
+                        type: 'pie',
+                        data: {
+                            labels: [{% for elemento2 in elemento2 %} '{{elemento2.Year}}', {% endfor %}],
+                    datasets: [{
+                        label: 'Number of Products',
+                        data: [{% for elemento2 in elemento2 %} {{ elemento2.Cantidad }}, {% endfor %}],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                                borderWidth: 1
+                    }]
+                        },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 my-4">
+        <div class="bg-white">
+            <div class="card-body">
+                <canvas id="myChart12" width="400" height="300"></canvas>
+                <script>
+                    var ctx12 = document.getElementById('myChart12').getContext('2d');
+                    var myChart12 = new Chart(ctx12, {
+                        type: 'bar',
+                        data: {
+                            labels: [{% for elemento2 in elemento2 %} '{{elemento2.Year}}',{% endfor %}],
+                    datasets: [{
+                        label: 'Products',
+                        data: [{% for elemento2 in elemento1 %} {{ elemento2.Cantidad }}, {% endfor %}],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                                borderWidth: 1
+                    }]
+                        },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% else %}
+
+{% endif%}
+
+{% endblock %}

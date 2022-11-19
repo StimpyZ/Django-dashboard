@@ -13,15 +13,15 @@ def index(request):
     elemento2 = Elementos2.objects.all()
     elemento2_count = elemento2.count()
 
-    if request.method == 'POST':
-        form = ElementForm1(request.POST)
-        if form.is_valid():
-            obj = form.save(commit=False)
-            obj.customer = request.user
-            obj.save()
-            return redirect('dashboard-index')
-    else:
-        form = ElementForm1()
+    # if request.method == 'POST':
+    #     form = ElementForm1(request.POST)
+    #     if form.is_valid():
+    #         obj = form.save(commit=False)
+    #         obj.customer = request.user
+    #         obj.save()
+    #         return redirect('/')
+    # else:
+    form = ElementForm1()
     context = {
         'form': form,
         'elemento': elemento,
